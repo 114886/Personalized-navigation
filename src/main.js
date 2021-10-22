@@ -21,7 +21,7 @@ const simplifyUrl = (url) => {
 
 const render = () => {
   $siteList.find('li:not(.last)').remove()
-  hashMap.forEach((node,index) => {
+  hashMap.forEach((node, index) => {
     const $li = $(`<li>
     <div class="site">
       <div class="logo">${node.logo}</div>
@@ -66,18 +66,13 @@ window.onbeforeunload = () => {
   localStorage.setItem('hsave', string)
 }
 
-// $(document).on('keypress', (e) => {
-//   const { key } = e
-//   console.log($('#txt').val()+'SSSS'+e.key);
-//   setTimeout(() => {
-//     for (let i = 0; i < hashMap.length; i++) {
-//       if (hashMap[i].logo === key) {
-//         if ($('#txt').val() === '') {
-//           window.open(hashMap[i].url)
-//         } else if ($('#txt').val() !== key) {
-//           window.open(hashMap[i].url)
-//         }
-//       }
-//     }
-//   }, 500);
-// })
+$(document).on('keypress', (e) => {
+  const { key } = e
+  if ($('#txt').val() === '') {
+    for (let i = 0; i < hashMap.length; i++) {
+      if (hashMap[i].logo === key) {
+        window.open(hashMap[i].url)
+      }
+    }
+  }
+})

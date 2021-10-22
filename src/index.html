@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Search</title>
+  <link href="https://cdn.bootcss.com/font-awesome/5.8.0/css/all.css" rel="stylesheet" />
   <style type="text/css">
     .icon {
        width: 1em; height: 1em;
@@ -20,8 +21,12 @@
     <form class="searchForm" method="get"
       action="https://www.baidu.com/s"
     >
-      <input name="wd" type="text" id="txt">
-      <button type="submit">搜索</button>
+  
+      <input name="wd" type="text" id="txt" class="search-txt">
+      <button type="submit" class="search-btn">
+        <i class="fas fa-search"></i>
+      </button>
+  
     </form>
   </header>
   <main class="globalMain">
