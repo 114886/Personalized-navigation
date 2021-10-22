@@ -2,6 +2,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  user-select: none;
 }
 
 *:before,
@@ -29,11 +30,11 @@ img {
 
 
 body {
-  height: 100vh;
-  /* width: 100vw; */
-  background: url(8.ebfe1ecf.jpg) no-repeat top;
+  display: block;
+  background: url(1.9e86cf3f.jpg) no-repeat top;
+  min-width: 100vw;
+  min-height: 100vh;
   background-size: cover;
-  /* background: rgb(107, 105, 105); */
 }
 
 .globalHeader {
@@ -41,41 +42,69 @@ body {
 }
 
 @media (min-width:500px) {
+  body{
+    overflow: hidden;
+  }
   .globalHeader {
-    margin: 60px 0 100px;
+    margin: 119px 0 69px;
   }
 }
 
 .searchForm {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+}
+.searchForm > button .icon{
+  height: 30px;
+  width: 30px;
 }
 
 @media (min-width:500px) {
   .searchForm {
     margin-left: auto;
     margin-right: auto;
-    max-width: 400px;
+    max-width: 500px;
   }
 }
 
 .searchForm>input {
+  height: 45px;
+  padding: 0px 15px;
+  width: 50%;
+  border: none;
+  border-radius: 50px;
+  margin-right: -50px;
+  background: #d193208c;
+  backdrop-filter: blur(1px);
+  color: white;
+  transition: 1s;
+}
+
+.searchForm>input:focus{
   margin-right: 10px;
   width: 100%;
-  height: 40px;
-  padding: 0 10px;
-  border: none;
-  border-radius: 4px;
+  transition: 1s;
 }
 
 .searchForm>button {
   white-space: nowrap;
   padding: 0 10px;
   border: none;
-  border-radius: 4px;
-  background: #0282B9;
-  color: white;
+  border: 1px solid  #d1932000;
+  border-radius: 50%;
+  background: #d193208c;
+  transition: 1s;
+  backdrop-filter: blur(1px);
   font-size: 16px;
+}
+
+.searchForm>button:hover{
+  background: rgba(110, 94, 69, 0.8);
+  box-shadow:0 0 7px white inset,0 0 10px orange inset;
+}
+.searchForm>input:hover{
+  background: rgba(110, 94, 69, 0.8);
+  box-shadow:0 0 7px white inset,0 0 10px orange inset;
 }
 
 .globalMain {
@@ -114,37 +143,50 @@ body {
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  background: white;
-  border-radius: 4px;
+  background: rgb(142 86 86 / 50%);
+  backdrop-filter: blur(4px);
+  border-radius: 50%;
   padding: 20px 0;
+  transition: 1s;
   position: relative;
   cursor: pointer;
 }
 
 .siteList .site>.logo {
-  width: 64px;
-  height: 64px;
+  width: 54px;
+  height: 54px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 64px;
+  font-size: 54px;
+  color: orange;
 }
 
 .siteList .site>.link {
   font-size: 14px;
   margin-top: 4px;
+  max-width: 85px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: orange;
 }
 
 .siteList .site >.close {
   position: absolute;
-  top: 5px;
-  right: 10px;
+  top: 20px;
+  right: 25px;
   display: none;
   cursor: default;
 }
 
 .siteList .site:hover >.close{
   display: block;
+}
+
+.siteList .site:hover{
+  background: rgba(110, 94, 69, 0.8);
+  box-shadow:0 0 7px white inset,0 0 10px orange inset;
 }
 
 .siteList .addButton {
@@ -154,23 +196,32 @@ body {
   flex-direction: column;
   width: 160px;
   padding: 20px 0;
-  background: white;
-  border-radius: 4px;
+  background: rgb(142 86 86 / 50%);
+  backdrop-filter: blur(4px);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 1s;
+}
+
+.siteList .addButton:hover{
+  background: rgba(110, 94, 69, 0.8);
+  box-shadow:0 0 7px white inset,0 0 10px orange inset;
 }
 
 .siteList .addButton .icon {
-  width: 64px;
-  height: 64px;
+  width: 54px;
+  height: 54px;
 }
 
 .siteList .addButton .text {
+  color: orange; 
   font-size: 14px;
   margin-top: 4px;
 }
 
 .siteList .addButton .iconfont {
-  width: 64px;
-  height: 64px;
+  width: 54px;
+  height: 54px;
   display: flex;
   justify-content: center;
   align-items: center;
