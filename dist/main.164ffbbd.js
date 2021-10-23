@@ -121,9 +121,20 @@ var simplifyUrl = function simplifyUrl(url) {
 };
 
 var render = function render() {
+  if (hashMap[1] !== undefined) {
+    for (var i = 0; i < hashMap.length - 1; i++) {
+      for (var j = i + 1; j < hashMap.length; j++) {
+        if (hashMap[i].url === hashMap[j].url) {
+          alert('请勿添加相同标签！');
+          hashMap.splice(j, 1);
+          render();
+        }
+      }
+    }
+  }
   $siteList.find('li:not(.last)').remove();
   hashMap.forEach(function (node, index) {
-    var $li = $('<li>\n    <div class="site">\n      <div class="logo">' + node.logo + '</div>\n      <div class="link">' + simplifyUrl(node.url) + '</div>\n      <div class="close">\n        <svg class="icon" aria-hidden="true">\n          <use xlink:href="#icon-guanbi"></use>\n        </svg>\n      </div>\n    </div>\n  </li>').insertBefore($lastLi);
+    var $li = $('<li>\n    <div class="site" ondragstart="dragStart(event)" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)">\n      <div class="logo">' + node.logo + '</div>\n      <div class="link">' + simplifyUrl(node.url) + '</div>\n      <div class="close">\n        <svg class="icon" aria-hidden="true">\n          <use xlink:href="#icon-guanbi"></use>\n        </svg>\n      </div>\n    </div>\n  </li>').insertBefore($lastLi);
     $li.on('click', function () {
       window.open(node.url);
     });
@@ -135,6 +146,56 @@ var render = function render() {
   });
 };
 render();
+
+var ecname = void 0;
+var es = {};
+var ed = {};
+var dragStart = function dragStart(event) {
+  // console.log(event.target);
+  // console.log($(event.path[0]).find('.link')[0].innerHTML);
+  ecname = event.path[0].className;
+  var x = $(event.path[0]).find('.link')[0].innerHTML;
+  for (var i = 0; i < hashMap.length; i++) {
+    // console.log(x,simplifyUrl(hashMap[i].url));
+    if (simplifyUrl(hashMap[i].url) === x) {
+      es.url = hashMap[i].url;
+      es.id = i;
+      // console.log(es);
+    }
+  }
+};
+var allowDrop = function allowDrop(event) {
+  event.preventDefault();
+};
+var drop = function drop(event) {
+  event.preventDefault();
+  // console.log(es);
+  var temp = {};
+  var e = void 0;
+  if (event.path[0].className === ecname) {
+    e = event.path[0];
+  } else {
+    e = event.path[1];
+  }
+  var x = $(e).find('.link')[0].innerHTML;
+  // console.log(x);
+  for (var i = 0; i < hashMap.length; i++) {
+    // console.log(x,simplifyUrl(hashMap[i].url));
+    if (simplifyUrl(hashMap[i].url) === x) {
+      ed.url = hashMap[i].url;
+      ed.id = i;
+    }
+  }
+
+  temp.logo = hashMap[ed.id].logo;
+  temp.url = hashMap[ed.id].url;
+  hashMap[ed.id].logo = hashMap[es.id].logo;
+  hashMap[ed.id].url = hashMap[es.id].url;
+  hashMap[es.id].logo = temp.logo;
+  hashMap[es.id].url = temp.url;
+  // console.log(hashMap);
+  render();
+};
 
 $('.addButton').on('click', function () {
   var url = window.prompt('请问你要添加的网址是什么？');
@@ -167,4 +228,4 @@ $(document).on('keypress', function (e) {
   }
 });
 },{}]},{},["epB2"], null)
-//# sourceMappingURL=main.dd838360.map
+//# sourceMappingURL=main.164ffbbd.map
