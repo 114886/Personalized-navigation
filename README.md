@@ -1,6 +1,6 @@
 # Personalized-navigation
 个性标签页，预览地址：
-https://hzcann.xyz/Personalized-navigation/src/index.html
+https://114886.github.io/Personalized-navigation/src/index.html
 
 ## 快捷方式：
 
